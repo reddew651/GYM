@@ -381,8 +381,12 @@
         }
         .text-status {
             color: #a8a7a7;
-            font-size: 16px Arial;
-            font: sans-serif;
+            font: 16px Arial, sans-serif;  /* 修正语法错误 */
+            display: inline-block;  /* 使其可以设置宽高 */
+            width: 138.59px;  /* 与按钮相同宽度 */
+            height: 40px;  /* 与按钮相同高度 */
+            line-height: 40px;  /* 垂直居中文本 */
+            text-align: center;  /* 水平居中文本 */
         }
     </style>
 </head>
@@ -481,12 +485,7 @@
                             <ul class="booking-list">
                                 <li class="booking-item">
                                     <div class="booking-venue">深圳校区健身房-场地1</div>
-                                    <div class="booking-date">2025年3月21日 04:00 PM - 06:00 PM</div>
-                                    <div class="booking-actions"></div>
-                                </li>
-                                <li class="booking-item">
-                                    <div class="booking-venue">深圳校区健身房-场地1</div>
-                                    <div class="booking-date">2025年3月22日 10:00 AM - 12:00 PM</div>
+                                    <div class="booking-date">2025年3月26日 06:00 PM - 08:00 PM</div>
                                     <div class="booking-actions">
                                         <button class="btn-small btn-cancel">取消预约</button>
                                     </div>
@@ -511,5 +510,123 @@
             </div>
         </main>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 更新日期选择器中的日期
+            function updateDateSelector() {
+                const today = new Date();
+                const dateItems = document.querySelectorAll('.date-item');
+                
+                // 星期名称
+                const weekdays = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+                
+                // 设置三天的日期
+                for (let i = 0; i < Math.min(3, dateItems.length); i++) {
+                    const date = new Date(today);
+                    date.setDate(date.getDate() + i);
+                    
+                    const element = dateItems[i];
+                    const dayName = element.querySelector('.date-day');
+                    const dateNumber = element.querySelector('.date-number');
+                    const dateAvailable = element.querySelector('.date-available');
+                    
+                    dayName.textContent = weekdays[date.getDay()];
+                    dateNumber.textContent = (date.getMonth() + 1).toString().padStart(2, '0') + '-' + 
+                                            date.getDate().toString().padStart(2, '0');
+                    
+                    // 设置可用数量为0
+                    dateAvailable.textContent = "0";
+                }
+                
+                // 第一个选项为选中状态
+                dateItems[0].classList.add('selected');
+                for(let i = 1; i < dateItems.length; i++) {
+                    dateItems[i].classList.remove('selected');
+                }
+            }
+            
+            // 按周计划生成预约文本
+            function getBookingTimeByWeekday(day) {
+                switch(day) {
+                    case 1: // 周一
+                    case 5: // 周五
+                        return "04:00 PM - 06:00 PM";
+                    case 2: // 周二
+                    case 4: // 周四
+                        return "06:00 PM - 08:00 PM";
+                    case 6: // 周六
+                        return "10:00 AM - 12:00 PM";
+                    default:
+                        return "02:00 PM - 04:00 PM"; // 其他日期默认时段
+                }
+            }
+            
+            // 更新预约日期
+            function updateBookings() {
+                // 获取日期
+                const today = new Date();
+                const tomorrow = new Date(today);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                const yesterday = new Date(today);
+                yesterday.setDate(yesterday.getDate() - 1);
+                const dayBeforeYesterday = new Date(today);
+                dayBeforeYesterday.setDate(dayBeforeYesterday.getDate() - 2);
+                
+                // 设置"我的预约"
+                const myBookingsList = document.querySelector('.my-bookings .booking-list');
+                myBookingsList.innerHTML = ''; // 清空现有的预约
+                
+                // 今天的预约
+                const todayItem = document.createElement('li');
+                todayItem.className = 'booking-item';
+                todayItem.innerHTML = `
+                    <div class="booking-venue">深圳校区健身房-场地1</div>
+                    <div class="booking-date">${today.getFullYear()}年${today.getMonth() + 1}月${today.getDate()}日 ${getBookingTimeByWeekday(today.getDay())}</div>
+                    <div class="booking-actions">
+                        <button class="btn-small btn-cancel">取消预约</button>
+                    </div>
+                `;
+                myBookingsList.appendChild(todayItem);
+                
+                // 明天的预约
+                const tomorrowItem = document.createElement('li');
+                tomorrowItem.className = 'booking-item';
+                tomorrowItem.innerHTML = `
+                    <div class="booking-venue">深圳校区健身房-场地1</div>
+                    <div class="booking-date">${tomorrow.getFullYear()}年${tomorrow.getMonth() + 1}月${tomorrow.getDate()}日 ${getBookingTimeByWeekday(tomorrow.getDay())}</div>
+                    <div class="booking-actions">
+                        <button class="btn-small btn-cancel">取消预约</button>
+                    </div>
+                `;
+                myBookingsList.appendChild(tomorrowItem);
+                
+                // 设置"历史预约"
+                const historyBookingsList = document.querySelector('.history-bookings .booking-list');
+                historyBookingsList.innerHTML = ''; // 清空现有的预约
+                
+                // 前天的预约
+                const dayBeforeYesterdayItem = document.createElement('li');
+                dayBeforeYesterdayItem.className = 'booking-item';
+                dayBeforeYesterdayItem.innerHTML = `
+                    <div class="booking-venue">深圳校区健身房-场地1</div>
+                    <div class="booking-date">${dayBeforeYesterday.getFullYear()}年${dayBeforeYesterday.getMonth() + 1}月${dayBeforeYesterday.getDate()}日 ${getBookingTimeByWeekday(dayBeforeYesterday.getDay())}</div>
+                `;
+                historyBookingsList.appendChild(dayBeforeYesterdayItem);
+                
+                // 昨天的预约
+                const yesterdayItem = document.createElement('li');
+                yesterdayItem.className = 'booking-item';
+                yesterdayItem.innerHTML = `
+                    <div class="booking-venue">深圳校区健身房-场地1</div>
+                    <div class="booking-date">${yesterday.getFullYear()}年${yesterday.getMonth() + 1}月${yesterday.getDate()}日 ${getBookingTimeByWeekday(yesterday.getDay())}</div>
+                `;
+                historyBookingsList.appendChild(yesterdayItem);
+            }
+            
+            // 执行更新
+            updateDateSelector();
+            updateBookings();
+        });
+        </script>
 </body>
 </html>
