@@ -167,9 +167,12 @@ body {
 .date-selector {
     display: flex;
     margin-bottom: 20px;
+    margin-left: -2px;
     overflow-x: auto;
     background-color: #F0F0F0;
     padding: 8px;
+    margin-right: 8px;
+    border-radius: 8px;
 }
 
 .date-item {
@@ -187,7 +190,7 @@ body {
 
 .date-item.selected {
     background-color: #006633;
-    margin-right: 8px;
+    margin-right: 7px;
     padding: 8px;
     border-radius: 7px;
     box-shadow: 0 0 0 1.2px #ff8400;
@@ -228,6 +231,7 @@ body {
     overflow-x: auto;
     border: 1px solid #e0e0e0;
     border-radius: 4px;
+    margin-left: -6px;
 }
 
 table {
@@ -239,7 +243,7 @@ th, td {
     padding: 8px;
     text-align: center;
     border-bottom: 1px solid #e0e0e0;
-    font-size: 16px Arial, sans-serif;
+    font: 16px Arial, sans-serif;
     width: 150px;
     height: 41px;
     vertical-align: middle;
@@ -283,7 +287,7 @@ th {
     padding: 20px;
     width: 306.59px;
     height: 488.03px;
-    margin-left: -10px;
+    margin-left: -6px;
 }
 
 .sidebar-title {
