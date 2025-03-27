@@ -1,100 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>中山大学体育场馆预订系统</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* 新增样式 */
-        .booking-card {
-            background: #fff;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin: 16px;
-            padding: 16px;
-            display: flex;
-            position: relative;
-        }
-        
-        .status-tag {
-            position: absolute;
-            right: 16px;
-            top: 16px;
-            padding: 4px 8px;
-            border: 1px solid #4CAF50;
-            color: #4CAF50;
-            border-radius: 12px;
-            font-size: 12px;
-        }
-
-        .card-header {
-            border-bottom: 1px solid #eee;
-            padding-bottom: 8px;
-            margin-bottom: 12px;
-        }
-
-        .booking-title {
-            font-size: 16px;
-            font-weight: 500;
-            color: #333;
-        }
-
-        .time-info {
-            display: flex;
-            align-items: center;
-            margin: 8px 0;
-            color: #666;
-        }
-
-        .time-info i {
-            margin-right: 8px;
-            font-size: 16px;
-        }
-
-        .action-button {
-            background: none;
-            border: 1px solid #F44336;
-            color: #F44336;
-            padding: 6px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            float: right;
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        .pagination button {
-            margin: 0 4px;
-            padding: 6px 12px;
-            border: 1px solid #ddd;
-            background: #fff;
-            border-radius: 4px;
-        }
-
-        .filter-section {
-            display: flex;
-            align-items: center;
-            padding: 16px;
-            background: #f5f5f5;
-            margin: 16px;
-            border-radius: 4px;
-        }
-
-        .filter-button {
-            background: #006633;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            margin-right: 16px;
-            display: flex;
-            align-items: center;
-        }
-    </style>
+    <link rel="stylesheet" href="style2.css">
 </head>
 <body>
     <header class="header">
@@ -111,74 +22,35 @@
         </div>
     </header>
 
+    <!-- 添加图片区域 -->
+    <div class="banner-container">
+        <img src="1.png" alt="Banner" class="banner-image">
+    </div>
+
     <div class="main-container">
         <main class="main-content">
             <div class="content-wrapper">
                 <div class="content-header">
-                    <h2 class="page-title">我的账号</h2>
-                    <button class="btn btn-primary">
-                        <img src="home.png" alt="主页" style="margin-right: 4px; height: 20px; vertical-align: middle;">返回
-                    </button>
+                    <div class="tab-navigation">
+                        <span class="tab-item active">我的预约</span>
+                        <span class="tab-item">我的邀请</span>
+                        <span class="tab-item">我的排队</span>
+                    </div>
                 </div>
 
-                <!-- 新增预约管理内容 -->
                 <div class="filter-section">
-                    <button class="filter-button">
-                        <img src="calendar-icon.png" alt="日历" style="height: 16px; margin-right: 8px;">
-                        预约日期
-                    </button>
-                    <select class="status-select">
-                        <option>已预约</option>
-                        <option>已完成</option>
-                        <option>已取消</option>
-                    </select>
+                    <img src="2.png" alt="筛选界面" class="filter-image">
                 </div>
 
-                <div class="content-grid">
-                    <!-- 预约卡片1 -->
-                    <div class="booking-card">
-                        <div class="card-content">
-                            <div class="card-header">
-                                <div class="booking-title">深圳校区健身房</div>
-                                <div class="booking-id">#RB-YU1BA0SCQM 运动时 ¥5</div>
-                            </div>
-                            <div class="time-info">
-                                <img src="calendar-icon.png" alt="日期" style="height:16px">
-                                2025-03-28 
-                                <img src="clock-icon.png" alt="时间" style="margin-left:16px;height:16px">
-                                12:30 PM - 02:00 PM
-                                <img src="location-icon.png" alt="地点" style="margin-left:16px;height:16px">
-                                场地1
-                            </div>
-                            <button class="action-button">取消</button>
-                        </div>
-                        <span class="status-tag">已预约</span>
-                    </div>
-
-                    <!-- 预约卡片2 -->
-                    <div class="booking-card">
-                        <div class="card-content">
-                            <div class="card-header">
-                                <div class="booking-title">南校区游泳馆</div>
-                                <div class="booking-id">#RB-96JVNVFW94 运动时 ¥10</div>
-                            </div>
-                            <div class="time-info">
-                                <img src="calendar-icon.png" alt="日期" style="height:16px">
-                                2025-03-30 
-                                <img src="clock-icon.png" alt="时间" style="margin-left:16px;height:16px">
-                                14:00 PM - 16:00 PM
-                                <img src="location-icon.png" alt="地点" style="margin-left:16px;height:16px">
-                                泳道3
-                            </div>
-                        </div>
-                        <span class="status-tag">已完成</span>
+                <div class="card-list">
+                    <div class="content-grid">
+                        <!-- 卡片内容会由JavaScript动态生成 -->
                     </div>
                 </div>
 
-                <!-- 分页 -->
                 <div class="pagination">
                     <button disabled>‹</button>
-                    <button style="background:#006633;color:white">1</button>
+                    <button class="active">1</button>
                     <button>2</button>
                     <button>3</button>
                     <button>›</button>
@@ -188,14 +60,105 @@
     </div>
 
     <script>
-        const logoutBtn = document.querySelector('.logout-btn');
-        logoutBtn.addEventListener('click', () => {
-            window.location.href = 'login.html';
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            // 按周计划生成预约文本
+            function getBookingTimeByWeekday(day) {
+                switch(day) {
+                    case 1: case 5: return "04:00 PM - 06:00 PM";
+                    case 2: case 4: return "06:00 PM - 08:00 PM";
+                    case 6: return "10:00 AM - 12:00 PM";
+                    default: return "04:00 PM - 06:00 PM";
+                }
+            }
+            
+            // 动态生成预约卡片
+            function updateBookingCards() {
+                const today = new Date();
+                const tomorrow = new Date(today);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                
+                const contentGrid = document.querySelector('.content-grid');
+                contentGrid.innerHTML = '';
+                
+                // 创建明天的预约卡片
+                const tomorrowCard = document.createElement('div');
+                tomorrowCard.className = 'booking-card';
+                tomorrowCard.innerHTML = `
+                    <div class="card-content">
+                        <div class="card-header">
+                            <img src="warn.png" alt="警告" class="warn-icon">
+                            <div class="booking-title">深圳校区健身房</div>
+                        </div>
+                        <div class="booking-info">
+                            <div class="booking-id">#RB-YU1BA0SCQM 运动时 ¥5</div>
+                            
+                            <div class="date-row">
+                                <img src="calendar-icon.png" class="info-icon icon-left">
+                                ${tomorrow.getFullYear()}-${(tomorrow.getMonth() + 1).toString().padStart(2, '0')}-${tomorrow.getDate().toString().padStart(2, '0')}
+                                <img src="calendar-icon2.png" class="info-icon icon-right">
+                            </div>
+                            <div class="time-row">
+                                ${getBookingTimeByWeekday(tomorrow.getDay())}
+                                <img src="clock-icon.png" class="info-icon icon-right">
+                            </div>
+                            
+                            <div class="location-row">深圳校区健身房-场地1</div>
+                        </div>
+                        <button class="action-button">取消</button>
+                    </div>
+                    <span class="status-tag">已预约</span>
+                `;
+                contentGrid.appendChild(tomorrowCard);
+                
+                // 创建今天的预约卡片
+                const todayCard = document.createElement('div');
+                todayCard.className = 'booking-card';
+                todayCard.innerHTML = `
+                    <div class="card-content">
+                        <div class="card-header">
+                            <img src="warn.png" alt="警告" class="warn-icon">
+                            <div class="booking-title">深圳校区健身房</div>
+                        </div>
+                        <div class="booking-info">
+                            <div class="booking-id">#RB-96JVNVFW94 运动时 ¥5</div>
+                            
+                            <div class="date-row">
+                                <img src="calendar-icon.png" class="info-icon icon-left">
+                                ${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}
+                                <img src="calendar-icon2.png" class="info-icon icon-right">
+                            </div>
+                            <div class="time-row">
+                                ${getBookingTimeByWeekday(today.getDay())}
+                                <img src="clock-icon.png" class="info-icon icon-right">
+                            </div>
+                            
+                            <div class="location-row">深圳校区健身房-场地1</div>
+                        </div>
+                    </div>
+                    <span class="status-tag">已预约</span>
+                `;
+                contentGrid.appendChild(todayCard);
+            }
 
-        const backBtn = document.querySelector('.btn-primary');
-        backBtn.addEventListener('click', () => {
-            window.location.href = 'index.html';
+            // 执行更新
+            updateBookingCards();
+            
+            // 事件监听设置
+            const tabItems = document.querySelectorAll('.tab-item');
+            tabItems.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    tabItems.forEach(item => item.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            document.querySelector('.logout-btn').addEventListener('click', () => {
+                window.location.href = 'login.html';
+            });
+            
+            document.querySelector('.recharge-btn').addEventListener('click', () => {
+                window.location.href = 'index.html';
+            });
         });
     </script>
 </body>
