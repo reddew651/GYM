@@ -98,7 +98,7 @@ body {
 }
 
 .page-title {
-    font-size: 24px;
+    font: 24px, sans-serif;
     color: #333333;
     width: 96px;
     height: 36px;

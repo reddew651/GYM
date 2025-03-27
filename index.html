@@ -254,6 +254,12 @@
                 });
             }
 
+            // 添加"我的账号"按钮点击事件
+            const accountBtn = document.querySelector('.recharge-btn');
+            accountBtn.addEventListener('click', function() {
+                window.location.href = 'account.html'; 
+            });
+
             // 执行更新
             updateDateSelector();
             updateBookings();

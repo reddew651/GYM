@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>中山大学体育场馆预订系统</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 新增样式 */
+        .booking-card {
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 16px;
+            padding: 16px;
+            display: flex;
+            position: relative;
+        }
+        
+        .status-tag {
+            position: absolute;
+            right: 16px;
+            top: 16px;
+            padding: 4px 8px;
+            border: 1px solid #4CAF50;
+            color: #4CAF50;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        .card-header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+
+        .booking-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .time-info {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            color: #666;
+        }
+
+        .time-info i {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        .action-button {
+            background: none;
+            border: 1px solid #F44336;
+            color: #F44336;
+            padding: 6px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .pagination button {
+            margin: 0 4px;
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        .filter-section {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background: #f5f5f5;
+            margin: 16px;
+            border-radius: 4px;
+        }
+
+        .filter-button {
+            background: #006633;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-right: 16px;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="logo.png" alt="中山大学Logo" class="logo">
+            <h1 class="title desktop-only">体育场馆管理与预约系统</h1>
+            <div class="spacer"></div>
+            <div class="user-info">
+                <span class="user-name desktop-only">陈海弘</span>
+                <span class="user-points desktop-only">运动时: 405.00 元</span>
+                <button class="recharge-btn">我的账号</button>
+                <button class="logout-btn">登出</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="content-header">
+                    <h2 class="page-title">我的账号</h2>
+                    <button class="btn btn-primary">
+                        <img src="home.png" alt="主页" style="margin-right: 4px; height: 20px; vertical-align: middle;">返回
+                    </button>
+                </div>
+
+                <!-- 新增预约管理内容 -->
+                <div class="filter-section">
+                    <button class="filter-button">
+                        <img src="calendar-icon.png" alt="日历" style="height: 16px; margin-right: 8px;">
+                        预约日期
+                    </button>
+                    <select class="status-select">
+                        <option>已预约</option>
+                        <option>已完成</option>
+                        <option>已取消</option>
+                    </select>
+                </div>
+
+                <div class="content-grid">
+                    <!-- 预约卡片1 -->
+                    <div class="booking-card">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <div class="booking-title">深圳校区健身房</div>
+                                <div class="booking-id">#RB-YU1BA0SCQM 运动时 ¥5</div>
+                            </div>
+                            <div class="time-info">
+                                <img src="calendar-icon.png" alt="日期" style="height:16px">
+                                2025-03-28 
+                                <img src="clock-icon.png" alt="时间" style="margin-left:16px;height:16px">
+                                12:30 PM - 02:00 PM
+                                <img src="location-icon.png" alt="地点" style="margin-left:16px;height:16px">
+                                场地1
+                            </div>
+                            <button class="action-button">取消</button>
+                        </div>
+                        <span class="status-tag">已预约</span>
+                    </div>
+
+                    <!-- 预约卡片2 -->
+                    <div class="booking-card">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <div class="booking-title">南校区游泳馆</div>
+                                <div class="booking-id">#RB-96JVNVFW94 运动时 ¥10</div>
+                            </div>
+                            <div class="time-info">
+                                <img src="calendar-icon.png" alt="日期" style="height:16px">
+                                2025-03-30 
+                                <img src="clock-icon.png" alt="时间" style="margin-left:16px;height:16px">
+                                14:00 PM - 16:00 PM
+                                <img src="location-icon.png" alt="地点" style="margin-left:16px;height:16px">
+                                泳道3
+                            </div>
+                        </div>
+                        <span class="status-tag">已完成</span>
+                    </div>
+                </div>
+
+                <!-- 分页 -->
+                <div class="pagination">
+                    <button disabled>‹</button>
+                    <button style="background:#006633;color:white">1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>›</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const logoutBtn = document.querySelector('.logout-btn');
+        logoutBtn.addEventListener('click', () => {
+            window.location.href = 'login.html';
+        });
+
+        const backBtn = document.querySelector('.btn-primary');
+        backBtn.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
