@@ -254,6 +254,62 @@
                 });
             }
 
+            /**
+             * 根据选中的日期更新时间段表格
+             */
+            function updateTimeSlots() {
+                // 获取当前选中的日期项
+                const selectedDateItem = document.querySelector('.date-item.selected');
+                if (!selectedDateItem) return;
+                
+                // 获取日期文本和星期几
+                const dayName = selectedDateItem.querySelector('.date-day').textContent;
+                const dateText = selectedDateItem.querySelector('.date-number').textContent;
+                
+                // 获取时间表格的tbody
+                const tableBody = document.querySelector('.time-slot-table tbody');
+                if (!tableBody) return;
+                
+                // 清空现有行
+                tableBody.innerHTML = '';
+                
+                // 根据星期几决定时间段
+                let timeSlots = [];
+                if (dayName === '星期六' || dayName === '星期日') {
+                    // 周末时间段
+                    timeSlots = [
+                        '10:00-12:00',
+                        '14:00-16:00',
+                        '16:00-18:00',
+                        '18:00-20:00',
+                        '20:00-22:00'
+                    ];
+                } else {
+                    // 工作日时间段，移除12:30-14:00
+                    timeSlots = [
+                        '14:00-16:00',
+                        '16:00-18:00',
+                        '18:00-20:00',
+                        '20:00-22:00'
+                    ];
+                }
+                
+                // 创建时间段行
+                timeSlots.forEach(slot => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td style="min-width: 150px; position: sticky; left: 0px; background: white; z-index: 1;">${slot}</td>
+                        <td style="min-width: 100px;">
+                            <button disabled class="slot-btn sold">已约</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(tr);
+                });
+                
+                // 更新时间段状态
+                updateTimeSlotStatus();
+            }
+
             // 添加"我的账号"按钮点击事件
             const accountBtn = document.querySelector('.recharge-btn');
             accountBtn.addEventListener('click', function() {
@@ -262,8 +318,22 @@
 
             // 执行更新
             updateDateSelector();
+            updateTimeSlots(); // 根据默认选中的日期更新时间段
             updateBookings();
             updateTimeSlotStatus();
+
+            // 添加日期选项点击事件
+            const dateItems = document.querySelectorAll('.date-item');
+            dateItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // 更新选中状态
+                    dateItems.forEach(i => i.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    // 更新时间段表格
+                    updateTimeSlots();
+                });
+            });
         });
     </script>
 </body>
