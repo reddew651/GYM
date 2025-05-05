@@ -79,8 +79,8 @@
             // 按周计划生成预约文本
             function getBookingTimeByWeekday(day) {
                 switch(day) {
-                    case 1: case 5: return "04:00 PM - 06:00 PM";
-                    case 2: case 4: return "06:00 PM - 08:00 PM";
+                    case 1: case 5: case 2: return "04:00 PM - 06:00 PM";
+                    case 4: return "06:00 PM - 08:00 PM";
                     case 6 : case 0: return "10:00 AM - 12:00 PM";
                     default: return "04:00 PM - 06:00 PM";
                 }
