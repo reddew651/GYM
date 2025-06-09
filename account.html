@@ -214,6 +214,14 @@
             // 在卡片生成后设置点击事件
             updateBookingCards();
             setupCardClickHandlers();
+
+            const img1 = document.querySelector('img[src="image/1.png"]');
+            if (img1) {
+                img1.style.cursor = 'pointer';
+                img1.addEventListener('click', () => {
+                    window.location.href = 'main.html';
+                });
+            }
         });
     </script>
      <!-- lower 放在页面最后，作为图片展示 -->
