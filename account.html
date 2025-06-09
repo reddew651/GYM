@@ -10,7 +10,7 @@
 <body>
     <header class="header">
         <div class="header-content">
-            <img src="logo.png" alt="中山大学Logo" class="logo">
+            <img src="image/logo.png" alt="中山大学Logo" class="logo">
             <h1 class="title desktop-only">体育场馆管理与预约系统</h1>
             <div class="spacer"></div>
             <div class="user-info">
@@ -101,20 +101,20 @@
                 tomorrowCard.innerHTML = `
                     <div class="card-content">
                         <div class="card-header">
-                            <img src="warn.png" alt="警告" class="warn-icon">
+                            <img src="image/warn.png" alt="警告" class="warn-icon">
                             <div class="booking-title">深圳校区健身房</div>
                         </div>
                         <div class="booking-info">
                             <div class="booking-id">#RB-YU1BA0SCQM</div>
                             
                             <div class="date-row">
-                                <img src="calendar-icon.png" class="info-icon icon-left">
+                                <img src="image/calendar-icon.png" class="info-icon icon-left">
                                 ${tomorrow.getFullYear()}-${(tomorrow.getMonth() + 1).toString().padStart(2, '0')}-${tomorrow.getDate().toString().padStart(2, '0')}
-                                <img src="calendar-icon2.png" class="info-icon icon-right">
+                                <img src="image/calendar-icon2.png" class="info-icon icon-right">
                             </div>
                             <div class="time-row">
                                 ${getBookingTimeByWeekday(tomorrow.getDay())}
-                                <img src="clock-icon.png" class="info-icon icon-right">
+                                <img src="image/clock-icon.png" class="info-icon icon-right">
                             </div>
                             
                             <div class="location-row">深圳校区健身房-场地1</div>
