@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中山大学体育场馆预订系统</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="image/logo.png" alt="中山大学Logo" class="logo">
+            <h1 class="title desktop-only">体育场馆管理与预约系统</h1>
+            <div class="spacer"></div>
+            <div class="user-info">
+                <span class="user-name desktop-only">陈海弘</span>
+                <span class="user-points desktop-only">运动时: 405.00 元</span>
+                <button class="recharge-btn">我的账号</button>
+                <button class="logout-btn">登出</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 添加图片区域 -->
+    <div class="banner-container">
+        <img src="image/1.png" alt="Banner" class="banner-image">
+    </div>
+
+    <div class="main-container">
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="content-header">
+                    <div class="tab-navigation">
+                        <span class="tab-item active">我的预约</span>
+                        <span class="tab-item">我的邀请</span>
+                        <span class="tab-item">我的排队</span>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <img src="image/2.png" alt="筛选界面" class="filter-image">
+                </div>
+
+                <div class="card-list">
+                    <div class="content-grid">
+                        <!-- 卡片内容会由JavaScript动态生成 -->
+                    </div>
+                </div>
+
+                <div class="pagination">
+                    <button disabled>‹</button>
+                    <button class="active">1</button>
+
+                    <button>›</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 添加模态窗口 -->
+    <div id="bookingModal" class="booking-modal">
+      <div class="modal-content">
+        <h2>我的预约</h2>
+        <div class="booking-details">
+          <div class="detail-row"><span class="detail-label">场馆：</span><span id="modal-venue" style="margin-left:-38px">深圳校区游泳池</span></div>
+          <div class="detail-row"><span class="detail-label">预约日期：</span><span id="modal-date" style="margin-left:-8px"></span></div>
+          <div class="detail-row"><span class="detail-label">预约时段：</span><span id="modal-time" style="margin-left:-8px" ></span></div>
+          <div class="detail-row"><span class="detail-label">场地名称：</span><span id="modal-location" style="margin-left:-8px">场地1</span></div>
+          <div class="detail-row"><span class="detail-label">预约编号：</span><span id="modal-id" style="margin-left:-8px"></span></div>
+          <div class="detail-row"><span class="detail-label">费用：</span><span id="modal-fee" style="margin-left:-38px">运动时 ¥5</span></div>
+        </div>
+        <button class="confirm-btn">确认</button>
+      </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 按周计划生成预约文本
+            function getBookingTimeByWeekday(day) {
+                switch(day) {
+                    default:
+                        return "16:30 - 18:00"; // 其他日期默认时段
+                }
+            }
+            
+            // 动态生成预约卡片
+            function updateBookingCards() {
+                const today = new Date();
+                const tomorrow = new Date(today);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                
+                const contentGrid = document.querySelector('.content-grid');
+                contentGrid.innerHTML = '';
+                
+                // 创建明天的预约卡片
+                const tomorrowCard = document.createElement('div');
+                tomorrowCard.className = 'booking-card';
+                tomorrowCard.innerHTML = `
+                    <div class="card-content">
+                        <div class="card-header">
+                            <img src="image/warn.png" alt="警告" class="warn-icon">
+                            <div class="booking-title">深圳校区游泳池</div>
+                        </div>
+                        <div class="booking-info">
+                            <div class="booking-id">#RB-YU1BA0SCQM</div>
+                            
+                            <div class="date-row">
+                                <img src="image/calendar-icon.png" class="info-icon icon-left">
+                                ${tomorrow.getFullYear()}-${(tomorrow.getMonth() + 1).toString().padStart(2, '0')}-${tomorrow.getDate().toString().padStart(2, '0')}
+                                <img src="image/calendar-icon2.png" class="info-icon icon-right">
+                            </div>
+                            <div class="time-row">
+                                ${getBookingTimeByWeekday(tomorrow.getDay())}
+                                <img src="image/clock-icon.png" class="info-icon icon-right">
+                            </div>
+                            
+                            <div class="location-row">深圳校区游泳池-场地1</div>
+                        </div>
+                        <button class="action-button">取消</button>
+                    </div>
+                    <span class="status-tag">已预约</span>
+                `;
+                contentGrid.appendChild(tomorrowCard);
+                
+                // 创建今天的预约卡片
+                const todayCard = document.createElement('div');
+                todayCard.className = 'booking-card';
+                todayCard.innerHTML = `
+                    <div class="card-content">
+                        <div class="card-header">
+                            <img src="image/warn.png" alt="警告" class="warn-icon">
+                            <div class="booking-title">深圳校区游泳池</div>
+                        </div>
+                        <div class="booking-info">
+                            <div class="booking-id">#RB-96JVNVFW94</div>
+                            
+                            <div class="date-row">
+                                <img src="image/calendar-icon.png" class="info-icon icon-left">
+                                ${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}
+                                <img src="image/calendar-icon2.png" class="info-icon icon-right">
+                            </div>
+                            <div class="time-row">
+                                ${getBookingTimeByWeekday(today.getDay())}
+                                <img src="image/clock-icon.png" class="info-icon icon-right">
+                            </div>
+                            
+                            <div class="location-row">深圳校区游泳池-场地1</div>
+                        </div>
+                    </div>
+                    <span class="status-tag">已预约</span>
+                `;
+                contentGrid.appendChild(todayCard);
+            }
+
+            // 执行更新
+            updateBookingCards();
+            
+            // 事件监听设置
+            const tabItems = document.querySelectorAll('.tab-item');
+            tabItems.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    tabItems.forEach(item => item.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            document.querySelector('.logout-btn').addEventListener('click', () => {
+                window.location.href = 'login.html';
+            });
+            
+            document.querySelector('.recharge-btn').addEventListener('click', () => {
+                window.location.href = 'index.html';
+            });
+
+            // 设置预约卡片点击显示详情
+            function setupCardClickHandlers() {
+                const bookingCards = document.querySelectorAll('.booking-card');
+                const modal = document.getElementById('bookingModal');
+                
+                bookingCards.forEach(card => {
+                    card.addEventListener('click', function() {
+                        // 从卡片中提取信息
+                        const bookingId = card.querySelector('.booking-id').textContent;
+                        const dateText = card.querySelector('.date-row').textContent.trim();
+                        const timeText = card.querySelector('.time-row').textContent.trim();
+                        const locationText = card.querySelector('.location-row').textContent;
+                        
+                        // 更新模态框信息
+                        document.getElementById('modal-date').textContent = dateText;
+                        document.getElementById('modal-time').textContent = timeText;
+                        document.getElementById('modal-id').textContent = bookingId;
+                        
+                        // 显示模态框
+                        modal.style.display = 'flex';
+                    });
+                });
+                
+                // 确认按钮关闭模态框
+                document.querySelector('.confirm-btn').addEventListener('click', function() {
+                    modal.style.display = 'none';
+                });
+                
+                // 点击模态框外部关闭
+                window.addEventListener('click', function(event) {
+                    if (event.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            }
+            
+            // 在卡片生成后设置点击事件
+            updateBookingCards();
+            setupCardClickHandlers();
+
+            const img1 = document.querySelector('img[src="image/1.png"]');
+            if (img1) {
+                img1.style.cursor = 'pointer';
+                img1.addEventListener('click', () => {
+                    window.location.href = 'main.html';
+                });
+            }
+        });
+    </script>
+     <!-- lower 放在页面最后，作为图片展示 -->
+     <div class="lower" style="text-align:center; margin: -24px 0 12px 0;">
+        <img src="image/lower.jpg" alt="页面底部图片" style="max-width:100%;height:auto;">
+    </div>
+</body>
+</html>
