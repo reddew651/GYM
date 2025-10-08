@@ -333,6 +333,12 @@
                 window.location.href = 'account_swim.html'; 
             });
 
+            //添加"返回"按钮点击事件
+            const homeBtn = document.querySelector('.btn-primary');
+            homeBtn.addEventListener('click', function() {
+                window.location.href = 'main.html'; 
+            });
+            
             // 执行更新
             updateDateSelector();
             updateTimeSlots(); // 根据默认选中的日期更新时间段

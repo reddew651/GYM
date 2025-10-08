@@ -39,5 +39,20 @@
     <div class="lower" style="text-align:center; margin: -24px 0 12px 0;">
         <img src="image/lower.jpg" alt="页面底部图片" style="max-width:100%;height:auto;">
     </div>
+
+<script>
+                    // 添加"我的账号"按钮点击事件
+            const accountBtn = document.querySelector('.recharge-btn');
+            accountBtn.addEventListener('click', function() {
+                window.location.href = 'account.html'; 
+            });
+
+            // 添加"登出"按钮点击事件
+            const logoutBtn = document.querySelector('.logout-btn');
+            logoutBtn.addEventListener('click', function() {
+                window.location.href = 'account_swim.html'; 
+            });
+
+</script>
 </body>
 </html>
